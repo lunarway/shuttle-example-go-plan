@@ -8,18 +8,4 @@ FROM scratch
 COPY --from=builder /go/app /app
 
 ENTRYPOINT [ "/app" ]
-
-
-# production runner
-FROM {{string "docker.image" .Vars | default "scratch"}}
-WORKDIR /{{$service}}
-
-CMD ["./{{$service}}"]
-
-COPY buildInfo.json .
-COPY Gopkg.lock .
-COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
-COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=builder /tmp/builds/* ./
-
-USER 1000%
+USER 1000
