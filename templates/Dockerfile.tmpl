@@ -2,7 +2,6 @@ FROM {{ string "docker.baseImage" .Vars }}:{{ string "docker.baseTag" .Vars }} a
 COPY main.go /go
 RUN go build -v -o app
 
-
 FROM scratch
 
 COPY --from=builder /go/app /app

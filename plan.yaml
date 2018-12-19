@@ -16,4 +16,4 @@ scripts:
     description: Deploys the image to a kubernetes environment
     actions: 
     - shell: shuttle template -o deployment.yaml deployment.tmpl 
-    - shell: kubeclt apply -f $tmp/deployment.yaml
+    - shell: kubectl apply -f $tmp/deployment.yaml
