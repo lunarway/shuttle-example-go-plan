@@ -7,7 +7,19 @@ scripts:
     actions:
     - shell: shuttle template -o Dockerfile Dockerfile.tmpl GO_VERSION=1.10.3
     - shell: docker build -f $tmp/Dockerfile -t $(shuttle get docker.image):$tag .
+  push:
+    description: Push the docker image
+    args:
+    - name: tag
+      required: true
+    actions:
+    - shell: docker push $(shuttle get docker.image):$tag
   test:
     description: Run test for the project
     actions:
     - shell: go test
+  deploy: 
+    description: Deploys the image to a kubernetes environment
+    actions: 
+    - shell: shuttle template -o deployment.yaml deployment.tmpl 
+    - shell: kubeclt apply -f $tmp/deployment.yaml

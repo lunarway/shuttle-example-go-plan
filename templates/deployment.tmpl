@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ string "service" .Vars }}
+  labels:
+    app: {{ string "service" .Vars }}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: {{ string "service" .Vars }}
+  template:
+    metadata:
+      labels:
+        app: {{ string "service" .Vars }}
+    spec:
+      containers:
+      - name: {{ string "docker.destImage" .Vars }}:{{string "docker.destTag" .Vars }}
+        image: {{ string "image" .Args }}
+        ports:
+        - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ string "service" .Vars }}
+spec:
+  selector:
+    app: {{ string "service" .Vars }}
+  ports:
+  - protocol: TCP
+    port: 80
