@@ -7,7 +7,7 @@ scripts:
   push:
     description: Push the docker image
     actions:
-    - shell: docker push $(shuttle get docker.baseImage):$(shuttle get docker.baseTag)
+    - shell: docker push $(shuttle get docker.destImage):$(shuttle get docker.destTag)
   test:
     description: Run test for the project
     actions:
