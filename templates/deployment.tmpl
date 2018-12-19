@@ -15,8 +15,8 @@ spec:
         app: {{ string "service" .Vars }}
     spec:
       containers:
-      - name: {{ string "docker.destImage" .Vars }}:{{string "docker.destTag" .Vars }}
-        image: {{ string "image" .Args }}
+      - name: {{ string "service" .Vars }}
+        image: {{ string "docker.destImage" .Vars }}:{{string "docker.destTag" .Vars }}
         ports:
         - containerPort: 80
 ---
