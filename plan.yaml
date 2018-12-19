@@ -1,19 +1,13 @@
 scripts:
   build:
     description: Build the docker image
-    args:
-    - name: tag
-      required: true
     actions:
-    - shell: shuttle template -o Dockerfile Dockerfile.tmpl GO_VERSION=1.10.3
-    - shell: docker build -f $tmp/Dockerfile -t $(shuttle get docker.image):$tag .
+    - shell: shuttle template -o Dockerfile Dockerfile.tmpl
+    - shell: docker build -f $tmp/Dockerfile -t $(shuttle get docker.destImage):$(shuttle get docker.destTag) .
   push:
     description: Push the docker image
-    args:
-    - name: tag
-      required: true
     actions:
-    - shell: docker push $(shuttle get docker.image):$tag
+    - shell: docker push $(shuttle get docker.baseImage):$(shuttle get docker.baseTag)
   test:
     description: Run test for the project
     actions:
