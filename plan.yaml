@@ -12,8 +12,12 @@ scripts:
     description: Run test for the project
     actions:
     - shell: go test
-  deploy: 
+  deploy:
     description: Deploys the image to a kubernetes environment
-    actions: 
-    - shell: shuttle template -o deployment.yaml deployment.tmpl 
+    actions:
+    - shell: shuttle template -o deployment.yaml deployment.tmpl
     - shell: kubectl apply -f $tmp/deployment.yaml
+  say:
+    description: Say something
+    actions:
+    - shell: echo something
