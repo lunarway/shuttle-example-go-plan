@@ -1,0 +1,6 @@
+plan: false
+
+vars:
+  service: shuttle-example-go-plan
+  squad: aura
+  domain: developer-productivity
