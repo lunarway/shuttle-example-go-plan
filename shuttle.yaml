@@ -2,5 +2,5 @@ plan: false
 
 vars:
   service: shuttle-example-go-plan
-  squad: esa
+  squad: dark-matter
   domain: developer-productivity
